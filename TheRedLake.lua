@@ -145,3 +145,5 @@ workspace.DescendantAdded:Connect(function(v)
         v.HoldDuration = 0
     end
 end)
+
+game:GetService("RunService").Heartbeat:Connect(function() game.Players.LocalPlayer.Character:SetAttribute("MaxStamina", math.huge) end)
