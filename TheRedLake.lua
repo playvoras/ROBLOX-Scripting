@@ -132,3 +132,10 @@ section1:NewToggle("Enemy ESP", "", function(o)
         end) 
     end 
 end)
+
+for i, v in ipairs(workspace:GetDescendants()) do
+    if v:IsA("ProximityPrompt") then
+        task.wait()
+        v.HoldDuration = 0
+    end
+end
