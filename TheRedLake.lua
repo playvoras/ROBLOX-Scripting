@@ -139,3 +139,9 @@ for i, v in ipairs(workspace:GetDescendants()) do
         v.HoldDuration = 0
     end
 end
+
+workspace.DescendantAdded:Connect(function(v)
+    if v:IsA("ProximityPrompt") then
+        v.HoldDuration = 0
+    end
+end)
