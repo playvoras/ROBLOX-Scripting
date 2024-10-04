@@ -66,7 +66,7 @@ section:NewToggle("Kill Closest", "", function(a)
             if tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) >= 10 then 
                 plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("AMMO")
                 plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("MUZZLE", plr.Character:FindFirstChildOfClass("Tool").Handle.Barrel)
-                for _, enemy in pairs(getclosestenemies(5)) do
+                for _, enemy in pairs(getclosestenemies(10)) do
                     plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("DAMAGE", {enemy:FindFirstChild("Head"), enemy:FindFirstChild("Head").Position, 0, false})
                 end
             elseif tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) < 10 then  
