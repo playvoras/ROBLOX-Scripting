@@ -133,6 +133,14 @@ section1:NewToggle("Enemy ESP", "", function(o)
     end 
 end)
 
+section1:NewButton("go to f1 loot room", "", function()
+    plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1329, -233, -171))
+end)
+
+section1:NewButton("go to gold loot room", "", function()
+    plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(753, -233, -755))
+end)
+
 for i, v in ipairs(workspace:GetDescendants()) do
     if v:IsA("ProximityPrompt") then
         task.wait()
