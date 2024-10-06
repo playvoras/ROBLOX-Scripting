@@ -164,6 +164,8 @@ if hookmetamethod then
 
     local blocked = {
         "kick",
+        "Shutdown",
+        "shutdown",
         "Kick", 
         "KickPlayer", 
         "Ban", 
