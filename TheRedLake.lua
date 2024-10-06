@@ -163,6 +163,7 @@ if hookmetamethod then
     local oldNamecall = mt.__namecall
 
     local blocked = {
+        "kick",
         "Kick", 
         "KickPlayer", 
         "Ban", 
