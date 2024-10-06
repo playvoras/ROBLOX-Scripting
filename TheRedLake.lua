@@ -155,3 +155,30 @@ workspace.DescendantAdded:Connect(function(v)
 end)
 
 game:GetService("RunService").Heartbeat:Connect(function() game.Players.LocalPlayer.Character:SetAttribute("Stamina", math.huge) end)
+
+if hookmetamethod then
+    local mt = getrawmetatable(game)
+    setreadonly(mt, false)
+
+    local oldNamecall = mt.__namecall
+
+    local blocked = {
+        "Kick", 
+        "KickPlayer", 
+        "Ban", 
+        "PlayerKicked", 
+        "TeleportToKick"
+    }
+
+    mt.__namecall = newcclosure(function(self, ...)
+        local method = getnamecallmethod()
+
+        if table.find(blocked, tostring(method)) then
+            return
+        end
+
+        return oldNamecall(self, ...)
+    end)
+
+    setreadonly(mt, true)
+end
