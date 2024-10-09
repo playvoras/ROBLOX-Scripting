@@ -137,6 +137,10 @@ section1:NewButton("go to scp 079 room", "", function()
     plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(850, -233, -518))
 end)
 
+section1:NewButton("go to fbi truck", "", function()
+    plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1053, 7, 118))
+end)
+
 for i, v in ipairs(workspace:GetDescendants()) do
     if v:IsA("ProximityPrompt") then
         task.wait()
