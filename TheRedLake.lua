@@ -66,7 +66,7 @@ section:NewToggle("Kill Closest", "", function(a)
             if tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) >= 10 then 
                 plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("AMMO")
                 plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("MUZZLE", plr.Character:FindFirstChildOfClass("Tool").Handle.Barrel)
-                for _, enemy in pairs(getclosestenemies(10)) do
+                for _, enemy in pairs(getclosestenemies(15)) do
                     plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("DAMAGE", {enemy:FindFirstChild("Head"), enemy:FindFirstChild("Head").Position, 0, false})
                 end
             elseif tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) < 10 then  
@@ -81,6 +81,34 @@ section:NewToggle("Kill Closest", "", function(a)
             end
         end)
     end 
+end)
+
+local killClosestConnection
+section:NewToggle("Kill Closest (RenderStepped)", "", function(toggle)
+    if toggle then
+        killClosestConnection = game:GetService("RunService").RenderStepped:Connect(function()
+            pcall(function()
+                if tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) >= 10 then
+                    plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("AMMO")
+                    plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("MUZZLE", plr.Character:FindFirstChildOfClass("Tool").Handle.Barrel)
+                    for _, enemy in pairs(getclosestenemies(10)) do
+                        plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("DAMAGE", {enemy:FindFirstChild("Head"), enemy:FindFirstChild("Head").Position, 0, false})
+                    end
+                else
+                    local oldpos = plr.Character.HumanoidRootPart.Position
+                    plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Maps["Chaos Facility"].Misc.Ammo.Box.Main.CFrame
+                    task.wait(.5)
+                    fireproximityprompt(game:GetService("Workspace").Maps["Chaos Facility"].Misc.Ammo.Box.Main:FindFirstChild("Template"))
+                    task.wait(.5)
+                    plr.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                end
+            end)
+        end)
+    else
+        if killClosestConnection then
+            killClosestConnection:Disconnect()
+        end
+    end
 end)
 
 local connection
