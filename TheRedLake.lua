@@ -61,7 +61,7 @@ end)
 
 section:NewToggle("Kill Closest", "", function(a)
     b = a 
-    while b and task.wait(0.0000001) do 
+    while b and task.wait() do 
         pcall(function()
             if tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) >= 10 then 
                 plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("AMMO")
