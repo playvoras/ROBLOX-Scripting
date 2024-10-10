@@ -83,6 +83,34 @@ section:NewToggle("Kill Closest", "", function(a)
     end 
 end)
 
+local connection
+section:NewToggle("Kill Closest (Heartbeat)", "", function(toggle)
+    if toggle then
+        connection = game:GetService("RunService").Heartbeat:Connect(function()
+            pcall(function()
+                if tonumber(plr.PlayerGui.Crosshair.Counter.StoredAmmo.Text) >= 10 then
+                    plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("AMMO")
+                    plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("MUZZLE", plr.Character:FindFirstChildOfClass("Tool").Handle.Barrel)
+                    for _, enemy in pairs(getclosestenemies(10)) do
+                        plr.Character:FindFirstChildOfClass("Tool").Main:FireServer("DAMAGE", {enemy:FindFirstChild("Head"), enemy:FindFirstChild("Head").Position, 0, false})
+                    end
+                else
+                    local oldpos = plr.Character.HumanoidRootPart.Position
+                    plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Maps["Chaos Facility"].Misc.Ammo.Box.Main.CFrame
+                    task.wait(.5)
+                    fireproximityprompt(game:GetService("Workspace").Maps["Chaos Facility"].Misc.Ammo.Box.Main:FindFirstChild("Template"))
+                    task.wait(.5)
+                    plr.Character.HumanoidRootPart.CFrame = CFrame.new(oldpos)
+                end
+            end)
+        end)
+    else
+        if connection then
+            connection:Disconnect()
+        end
+    end
+end)
+
 section:NewToggle("Instant Reload", "", function(q)
     r = q 
     while r and task.wait() do 
