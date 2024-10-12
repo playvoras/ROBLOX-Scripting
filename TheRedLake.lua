@@ -145,6 +145,10 @@ section1:NewButton("go to gold loot room", "", function()
     plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(760, -233, -62))
 end)
 
+section1:NewButton("go to server room", "", function()
+    plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(695, 9, -461))
+end)
+
 for i, v in ipairs(workspace:GetDescendants()) do
     if v:IsA("ProximityPrompt") then
         task.wait()
