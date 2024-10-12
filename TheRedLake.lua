@@ -1,6 +1,15 @@
 if game:GetService("ReplicatedStorage").shakerFolder then
     game:GetService("ReplicatedStorage").shakerFolder.Name = ""
 end
+local listToDestroy = {
+    "Trees",
+}
+
+for _, obj in ipairs(workspace:GetChildren()) do
+    if table.find(listToDestroy, obj.Name) then
+        obj:Destroy()
+    end
+end
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local window = library.CreateLib("Novaz#5792", "BloodTheme")
 local main = window:NewTab("Main")
