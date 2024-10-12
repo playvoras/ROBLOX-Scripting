@@ -174,39 +174,19 @@ workspace.DescendantAdded:Connect(function(v)
     end
 end)
 
+local junkFolder = workspace["Bullets/Junk"]
+if junkFolder then
+    for _, child in pairs(junkFolder:GetChildren()) do 
+        child:Destroy() 
+    end
+    junkFolder.ChildAdded:Connect(function(child)
+        child:Destroy()
+    end)
+end
+
 game:GetService("RunService").Heartbeat:Connect(
     function()
         game.Players.LocalPlayer.Character:SetAttribute("Stamina", math.huge)
         game.Players.LocalPlayer.Character:SetAttribute("IsRagdolled", false)
     end
 )
-
-if hookmetamethod then
-    local mt = getrawmetatable(game)
-    setreadonly(mt, false)
-
-    local oldNamecall = mt.__namecall
-
-    local blocked = {
-        "kick",
-        "Shutdown",
-        "shutdown",
-        "Kick", 
-        "KickPlayer", 
-        "Ban", 
-        "PlayerKicked", 
-        "TeleportToKick"
-    }
-
-    mt.__namecall = newcclosure(function(self, ...)
-        local method = getnamecallmethod()
-
-        if table.find(blocked, tostring(method)) then
-            return
-        end
-
-        return oldNamecall(self, ...)
-    end)
-
-    setreadonly(mt, true)
-end
