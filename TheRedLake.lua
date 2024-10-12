@@ -164,6 +164,7 @@ end)
 
 game:GetService("RunService").Heartbeat:Connect(
     function()
+        game:GetService("ReplicatedStorage").shakerFolder.Name = "" -- no more gun shake
         game.Players.LocalPlayer.Character:SetAttribute("Stamina", math.huge)
         game.Players.LocalPlayer.Character:SetAttribute("IsRagdolled", false)
     end
