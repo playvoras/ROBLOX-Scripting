@@ -175,6 +175,18 @@ workspace.DescendantAdded:Connect(function(v)
     end
 end)
 
+local junkFolder = workspace["Bullets/Junk"]
+if junkFolder then
+    for _, child in pairs(junkFolder:GetChildren()) do 
+        task.wait(1)
+        child:Destroy() 
+    end
+    junkFolder.ChildAdded:Connect(function(child)
+        task.wait(1)
+        child:Destroy()
+    end)
+end
+
 game:GetService("RunService").Heartbeat:Connect(
     function()
         game.Players.LocalPlayer.Character:SetAttribute("Stamina", math.huge)
