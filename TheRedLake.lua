@@ -170,6 +170,7 @@ end
 
 workspace.DescendantAdded:Connect(function(v)
     if v:IsA("ProximityPrompt") then
+        task.wait()
         v.HoldDuration = 0
     end
 end)
