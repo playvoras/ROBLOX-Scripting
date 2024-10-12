@@ -134,7 +134,7 @@ section1:NewToggle("Enemy ESP", "", function(o)
 end)
 
 section1:NewButton("go to scp 079 room", "", function()
-    plr.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(850, -233, -518))
+    plr.Character.HumanoidRootPart.CFrame = workspace:WaitForChild("Maps"):WaitForChild("Chaos Facility"):WaitForChild("Generated"):WaitForChild("079"):WaitForChild("Door"):WaitForChild("Main").CFrame
 end)
 
 section1:NewButton("go to fbi truck", "", function()
