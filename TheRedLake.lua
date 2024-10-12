@@ -162,7 +162,12 @@ workspace.DescendantAdded:Connect(function(v)
     end
 end)
 
-game:GetService("RunService").Heartbeat:Connect(function() game.Players.LocalPlayer.Character:SetAttribute("Stamina", math.huge) end)
+game:GetService("RunService").Heartbeat:Connect(
+    function()
+        game.Players.LocalPlayer.Character:SetAttribute("Stamina", math.huge)
+        game.Players.LocalPlayer.Character:SetAttribute("IsRagdolled", false)
+    end
+)
 
 if hookmetamethod then
     local mt = getrawmetatable(game)
