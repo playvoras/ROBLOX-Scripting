@@ -177,9 +177,11 @@ end)
 local junkFolder = workspace["Bullets/Junk"]
 if junkFolder then
     for _, child in pairs(junkFolder:GetChildren()) do 
+        wait(1)
         child:Destroy() 
     end
     junkFolder.ChildAdded:Connect(function(child)
+        wait(1)
         child:Destroy()
     end)
 end
